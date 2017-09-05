@@ -1,30 +1,14 @@
-import { ADD_USER , ADD_USER_SUCCESS, ADD_NEW_BOOKMARK, LOG_OUT,
-        AUTH_USER, AUTH_USER_SUCCESS, REMOVE_NEW_BOOKMARK } from '../constants';
+import { ADD_USER , ADD_USER_SUCCESS, ADD_NEW_QUESTION, LOG_OUT,
+        AUTH_USER, AUTH_USER_SUCCESS, REMOVE_NEW_QUESTION } from '../constants';
 
 
-export function addUser(user) {
-  return { payload: user, type: ADD_USER }
+export function addNewQuestion() {
+  return { type: ADD_NEW_QUESTION }
 }
 
-export function addUserSuccess(user) {
-  return {payload: user, type: ADD_USER_SUCCESS }
-}
-
-export function addNewBookmark() {
-  return { type: ADD_NEW_BOOKMARK }
-}
-
-export function removeNewBookmark(){
-  console.log("Remove Bookmark")
-  return { type: REMOVE_NEW_BOOKMARK }
-}
-
-export function authUser(user) {
-  return {payload: user, type: AUTH_USER};
-}
-
-export function authUserSuccess(user) {
-  return {payload: user, type: AUTH_USER_SUCCESS};
+export function removeNewQuestion(){
+  console.log("Remove Question")
+  return { type: REMOVE_NEW_QUESTION }
 }
 
 export function logOut(){

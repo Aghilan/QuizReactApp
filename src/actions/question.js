@@ -1,6 +1,7 @@
-import { SUCCESS, ADD_SUCCESS, ADD_BOOKMARK, GET_ALL_BOOKMARKS,
-        DELETE_BOOKMARK, DELETE_SUCCESS, UPDATE_SUCCESS,
-        UPDATE_BOOKMARK ,FLIP_EDITABLE, FILTER_BOOKMARK, FILTER_SUCCESS} from '../constants';
+import { SUCCESS, ADD_SUCCESS, ADD_QUESTION, GET_ALL_QUESTIONS,
+        DELETE_QUESTION, DELETE_SUCCESS, UPDATE_SUCCESS,
+        UPDATE_QUESTION ,FLIP_EDITABLE, FILTER_QUESTION,
+        FILTER_SUCCESS, DISPLAY_QUESTION} from '../constants';
 
 export function successResponse(response) {
   return { payload: response, type: SUCCESS };
@@ -10,38 +11,34 @@ export function addSuccess(response) {
   return { payload: response, type: ADD_SUCCESS };
 }
 
-export function addBookmark(bookmark, userId) {
-  return { payload: bookmark, userId: userId, type: ADD_BOOKMARK }
+export function addQuestion (question) {
+  return { payload: question, type: ADD_QUESTION }
 }
 
-export function getAllBookmarks( user_id ) {
-  return { payload: user_id, type: GET_ALL_BOOKMARKS }
+export function getAllQuestions () {
+  return { type: GET_ALL_QUESTIONS }
 }
 
-export function deleteBookmark(bookmarkId){
-  return { payload: bookmarkId, type: DELETE_BOOKMARK}
+export function deleteQuestion(questionId){
+  return { payload: questionId, type: DELETE_QUESTION}
 }
 
-export function deleteSuccessResponse(bookmarkId){
-  return { payload: bookmarkId, type: DELETE_SUCCESS  }
+export function deleteSuccessResponse(questionId){
+  return { payload: questionId, type: DELETE_SUCCESS }
 }
 
-export function updateBookmark(bookmark, bookmarkId){
-  return { payload: bookmark, id: bookmarkId, type: UPDATE_BOOKMARK}
+export function updateQuestion(question, questionId){
+  return { payload: question, id: questionId, type: UPDATE_QUESTION}
 }
 
-export function updateSuccess(bookmark){
-  return { payload: bookmark, type: UPDATE_SUCCESS}
+export function updateSuccess(question){
+  return { payload: question, type: UPDATE_SUCCESS}
 }
 
-export function filterBookmark(search_text, user_id){
-  return {payload: search_text, userId:user_id,  type: FILTER_BOOKMARK}
+export function makeEditable(question){
+  return {payload: question, type: FLIP_EDITABLE}
 }
 
-export function filterSuccess(bookmark){
-  return {payload: bookmark, type: FILTER_SUCCESS}
-}
-
-export function makeEditable(bookmark){
-  return {payload: bookmark, type: FLIP_EDITABLE}
+export function displayQuestion (question) {
+  return { type: DISPLAY_QUESTION, payload: question }
 }

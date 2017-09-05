@@ -1,15 +1,15 @@
-import { updateSuccess } from '../actions/quiz';
+import { updateSuccess } from '../actions/question';
 import responseHandler from './responseHandler'
 
 const UpdateApiCall = {
- upadateQuiz(quiz, id) {
-   var request_path = 'http://localhost:3000/quiz/' +id
+ upadateQuestion(question, id) {
+   var request_path = 'http://localhost:3000/questions/' +id
    fetch(request_path, {
      method: 'put',
      headers: {
        'Content-Type': 'application/json',
      },
-     body: JSON.stringify(quiz),
+     body: JSON.stringify(question),
    })
    .then(response => responseHandler(response, updateSuccess))
    .catch(error => { console.log('request failed', error); });

@@ -1,6 +1,6 @@
 export const SUCCESS = 'success',
              ADD_QUESTION = 'add_question',
-             GET_ALL_QUESTION = 'get_all_question',
+             GET_ALL_QUESTIONS = 'get_all_question',
              DELETE_QUESTION  = 'delete_question',
              DELETE_SUCCESS = 'deleted_success',
              UPDATE_QUESTION = 'update_question',
@@ -15,4 +15,5 @@ export const SUCCESS = 'success',
              REMOVE_NEW_QUESTION= 'remove_new_question',
              AUTH_USER = 'auth_user',
              AUTH_USER_SUCCESS = 'auth_user_success',
-             LOG_OUT = 'log_out'
+             LOG_OUT = 'log_out',
+             DISPLAY_QUESTION = 'display_question'

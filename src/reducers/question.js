@@ -1,4 +1,4 @@
-import { ADD_QUESTION, ADD_SUCCESS, SUCCESS, GET_ALL_QUESTION,
+import { ADD_QUESTION, ADD_SUCCESS, SUCCESS, GET_ALL_QUESTIONS,
         DELETE_QUESTION, UPDATE_QUESTION, UPDATE_SUCCESS, LOG_OUT,
         FLIP_EDITABLE ,DELETE_SUCCESS, FILTER_QUESTION, FILTER_SUCCESS} from '../constants';
 
@@ -28,13 +28,16 @@ export default function(state = [], action) {
       if(state.length === 0){
         action.payload.map((question) => {
           question.editable = false;
+          console.log(question);
           return question;
         })
+        console.log(action.payload);
         return action.payload
       }
       return [...state,action.payload]
-    case GET_ALL_QUESTION:
-      ReadApiCall.getQuestion(action.payload);
+    case GET_ALL_QUESTIONS:
+      console.log("Getting all questions");
+      ReadApiCall.getAllQuestion();
       return state;
     case UPDATE_SUCCESS:
       action.payload.editable =false;
@@ -46,7 +49,9 @@ export default function(state = [], action) {
       })
       return newState
     case DELETE_SUCCESS:
-      newState.map((question,idx) => {
+    console.log(newState);
+    console.log(state);
+      newState.map((question,idx) =>  {
           if(question._id === action.payload){
             newState.splice(idx, 1);
           }

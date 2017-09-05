@@ -6,17 +6,17 @@ class Grid extends Component {
     this.flip = this.flip.bind(this);
   }
 
-  deleteBookmark( bookmark ) {
-    this.props.action.deleteBookmark(bookmark);
+  deleteQuestion( question ) {
+    this.props.action.deleteQuestion(question);
   }
 
-  flip(bookmark){
-    this.props.action.makeEditable(bookmark)
+  flip(question){
+    this.props.action.makeEditable(question)
   }
 
   render() {
 
-    var { id, name, tags, url, editable } = this.props;
+    var { id, title, question, options, image, editable } = this.props;
     return (
       <div id="main-container">
         <div  id="item-container">
@@ -28,12 +28,12 @@ class Grid extends Component {
                     <td>
                       <div className="media">
                         <div className="media-body">
-                          <span className="media-meta pull-right">{url}</span>
+                          <span className="media-meta pull-right">{question}</span>
                           <h4 className="title">
-                            {name}
+                            {title}
                           </h4>
-                          <p className="summary">{tags}</p>
-                          <a className="media-star delete pull-right" href="javascript:void(0);" onClick={() => this.deleteBookmark(id)}>Remove</a>
+                          <p className="summary">{options}</p>
+                          <a className="media-star delete pull-right" href="javascript:void(0);" onClick={() => this.deleteQuestion(id)}>Remove</a>
                         </div>
                       </div>
                     </td>

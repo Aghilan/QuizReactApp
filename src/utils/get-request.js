@@ -1,13 +1,9 @@
-import { successResponse } from '../actions/quiz';
+import { successResponse } from '../actions/question';
 import responseHandler from './responseHandler'
 
 const ReadApiCall = {
- getQuiz(userId) {
-   makeApiCall('http://localhost:3000/users/'+userId+'/quiz')
- },
-
- getQuiz(quizId) {
-  makeApiCall("http://localhost:3000/quiz/"+quizId+ "'")
+ getAllQuestion() {
+  makeApiCall("http://localhost:3000/questions");
  }
 };
 
