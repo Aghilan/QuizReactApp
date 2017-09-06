@@ -1,10 +1,14 @@
 import { SUCCESS, ADD_SUCCESS, ADD_QUESTION, GET_ALL_QUESTIONS,
-        DELETE_QUESTION, DELETE_SUCCESS, UPDATE_SUCCESS,
-        UPDATE_QUESTION ,FLIP_EDITABLE, FILTER_QUESTION,
-        FILTER_SUCCESS, DISPLAY_QUESTION} from '../constants';
+        DELETE_QUESTIONS, DELETE_SUCCESS, UPDATE_SUCCESS,
+        UPDATE_QUESTION ,FLIP_DELETION, FILTER_QUESTION,
+        FILTER_SUCCESS, DISPLAY_QUESTION, ADD_NEW_QUESTION } from '../constants';
 
 export function successResponse(response) {
   return { payload: response, type: SUCCESS };
+}
+
+export function addNewQuestion() {
+  return { type: ADD_NEW_QUESTION }
 }
 
 export function addSuccess(response) {
@@ -19,12 +23,12 @@ export function getAllQuestions () {
   return { type: GET_ALL_QUESTIONS }
 }
 
-export function deleteQuestion(questionId){
-  return { payload: questionId, type: DELETE_QUESTION}
+export function deleteQuestions(questionId){
+  return { payload: questionId, type: DELETE_QUESTIONS}
 }
 
-export function deleteSuccessResponse(questionId){
-  return { payload: questionId, type: DELETE_SUCCESS }
+export function deleteSuccessResponse(questionIds){
+  return { payload: questionIds, type: DELETE_SUCCESS }
 }
 
 export function updateQuestion(question, questionId){
@@ -35,8 +39,8 @@ export function updateSuccess(question){
   return { payload: question, type: UPDATE_SUCCESS}
 }
 
-export function makeEditable(question){
-  return {payload: question, type: FLIP_EDITABLE}
+export function makeDeletable(question){
+  return { type: FLIP_DELETION }
 }
 
 export function displayQuestion (question) {

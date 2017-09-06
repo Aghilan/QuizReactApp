@@ -309,3 +309,9 @@ TODO: Divide into multiple css files
 .table-filter .media .summary {
 	font-size: 14px;
 }
+
+
+.left-pane {
+	max-height: 600px;
+    overflow: auto;
+}

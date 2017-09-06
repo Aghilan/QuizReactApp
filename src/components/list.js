@@ -11,10 +11,11 @@ class List extends Component {
   }
 
   render() {
-    var {title,question,id} = this.props
+    var {title,question,_id,deletable} = this.props
     return (
-    <div id="edit" className="col-sm-10 col-sm-offset-1" >
+    <div id="edit" className="col-sm-10 col-sm-offset-1">
       <br />	
+      <input type='checkbox' className="checklist" value={_id} hidden={!deletable}/>
       <button onClick={() => this.display()}> {title} </button>
       <br />
       {question}
