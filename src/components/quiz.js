@@ -19,6 +19,7 @@ class Question extends Component {
     if(document.getElementById('add').innerHTML === 'Add Questions') {
       this.props.action.addNewQuestion();
     } else {
+      console.log(this.getQuestionId);
       this.props.action.deleteQuestions(this.getQuestionId());
       this.selectQuestion()
     }

@@ -16,4 +16,5 @@ export const SUCCESS = 'success',
              AUTH_USER = 'auth_user',
              AUTH_USER_SUCCESS = 'auth_user_success',
              LOG_OUT = 'log_out',
-             DISPLAY_QUESTION = 'display_question'
+             DISPLAY_QUESTION = 'display_question',
+             UPDATE_IMAGE = 'update_image'

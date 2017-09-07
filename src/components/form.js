@@ -2,19 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as question from '../actions/question';
+import * as image from '../actions/image';
 
 class Form extends Component {
   constructor(props) {
     super(props);
     this.updateQuestion = this.updateQuestion.bind(this)
     this.renderOption = this.renderOption.bind(this)
+    this.readURL = this.readURL.bind(this)
+    this.request_body = this.request_body.bind(this)
+
+  }
+
+  getOptionsValue() {
+    var optionArray = [];
+    var options = document.getElementsByClassName('optionslist');
+    [].forEach.call(options,(option) => {
+      optionArray.push(option.innerText);
+    })
+    return optionArray;
   }
 
   updateQuestion( question ) {
     var title = document.getElementById(question+'title').innerHTML
     var questionValue = document.getElementById(question+'question').innerHTML
-    var options = ["Option 1", "Option 2"];
-    var image = null;
+    var options = this.getOptionsValue();
+    var fileInput = document.getElementById('file')
+    var image = this.props.image;
+    
     var request = this.request_body(title,questionValue,options,image);
 
     if(!title.trim()){
@@ -42,10 +57,31 @@ class Form extends Component {
 
   request_body(title,question,options,image) {
     return {
-      title: title,
-      question: question,
-      options: options,
-      image: image
+          title: title,
+          question: question,
+          options: options,
+          image: image
+        }
+  }
+  readURL() {
+    var input = document.getElementById('file')
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      console.log(this.props)
+      reader.onload = ( function (props) {
+        console.log(props);
+        return function (e) {
+          var image = document.getElementById('image');
+          console.log(props);
+          this.imageData = e.target.result;
+          props.imageAction.updateImage(this.imageData);
+          image.src = this.imageData;
+          image.width = 500;
+          image.height = 500;
+        }
+      })(this.props);
+
+      reader.readAsDataURL(input.files[0]);
     }
   }
 
@@ -55,8 +91,8 @@ class Form extends Component {
       {
         options.map((optionValue,i) => {
           return (<div key={i}>
-                    <input type='radio' name={id} value={optionValue}/>
-                    <span> {optionValue} </span>
+                    <span> Option {i+1} :</span>
+                    <div className="optionslist" id={id+i+'option'}contentEditable> {optionValue}  </div> 
                   </div>
                  )
         })
@@ -94,6 +130,8 @@ class Form extends Component {
           <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         { options? this.renderOption(options,_id) : null}
+        <img id="image" src={this.props.image} alt="" />
+        <input id="file" type="file" onChange={() => this.readURL()} accept="image/*" />
         <div className="form-group">
           <button className="btn btn-primary">Cancel</button>
           &nbsp;&nbsp;&nbsp;
@@ -112,12 +150,13 @@ Redux Containers - To map the components to store
 */
 
 function mapStateToProps(state){
-  return {single: state.single};
+  return {single: state.single, image: state.image};
 }
 
 function mapDispatchToProps(dispatch){
   return {
     action: bindActionCreators(question,dispatch),
+    imageAction: bindActionCreators(image,dispatch)
   }
 }
 

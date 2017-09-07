@@ -3,11 +3,12 @@ import responseHandler from './responseHandler'
 
 const CreateApiCall = {
 
-  newQuestion(question, userId) {
+  newQuestion(question) {
+    console.log(JSON.stringify(question));
    fetch('http://localhost:3000/questions', request(JSON.stringify(question)))
    .then(response => responseHandler(response, addSuccess))
    .catch(error => { console.log('request failed', error); });
-  }
+  },
 };
 
 var request = (body) => {

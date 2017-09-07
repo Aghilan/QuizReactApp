@@ -11,7 +11,7 @@ export default function(state = [], action) {
   var newState = [...state];
   switch (action.type) {
     case ADD_QUESTION:
-      CreateApiCall.newQuestion(action.payload, action.userId);
+      CreateApiCall.newQuestion(action.payload);
       return state;
     case ADD_SUCCESS:
       return [...state, action.payload];
