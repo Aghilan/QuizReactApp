@@ -7,11 +7,11 @@ import * as image from '../actions/image';
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.updateQuestion = this.updateQuestion.bind(this)
-    this.renderOption = this.renderOption.bind(this)
-    this.readURL = this.readURL.bind(this)
-    this.request_body = this.request_body.bind(this)
-
+    this.updateQuestion = this.updateQuestion.bind(this);
+    this.renderOption = this.renderOption.bind(this);
+    this.readURL = this.readURL.bind(this);
+    this.request_body = this.request_body.bind(this);
+    this.addOption = this.addOption.bind(this);
   }
 
   getOptionsValue() {
@@ -23,6 +23,12 @@ class Form extends Component {
     return optionArray;
   }
 
+  deleteOption(option) {
+    this.props.action.deleteOption(option);
+  }
+  addOption() {
+    this.props.action.addOption();
+  }
   updateQuestion( question ) {
     var title = document.getElementById(question+'title').innerHTML
     var questionValue = document.getElementById(question+'question').innerHTML
@@ -93,6 +99,7 @@ class Form extends Component {
           return (<div key={i}>
                     <span> Option {i+1} :</span>
                     <div className="optionslist" id={id+i+'option'}contentEditable> {optionValue}  </div> 
+                    <button onClick={() => this.deleteOption(i)}> Delete </button>
                   </div>
                  )
         })
@@ -110,6 +117,7 @@ class Form extends Component {
      options = ["Option 1", "Option 2"];
      console.log("New Question")
     }
+    console.log(options)
     return (
     <div className="col-sm-10 col-sm-offset-1" >
       <div data-toggle="validator" role="form">
@@ -130,6 +138,7 @@ class Form extends Component {
           <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         { options? this.renderOption(options,_id) : null}
+        <button id="add_option" onClick={()=> this.addOption()}>Add option </button>
         <img id="image" src={this.props.image} alt="" />
         <input id="file" type="file" onChange={() => this.readURL()} accept="image/*" />
         <div className="form-group">

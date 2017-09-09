@@ -17,4 +17,6 @@ export const SUCCESS = 'success',
              AUTH_USER_SUCCESS = 'auth_user_success',
              LOG_OUT = 'log_out',
              DISPLAY_QUESTION = 'display_question',
-             UPDATE_IMAGE = 'update_image'
+             UPDATE_IMAGE = 'update_image',
+             ADD_OPTION = 'add_option',
+             DELETE_OPTION = 'delete_option'

@@ -1,7 +1,7 @@
 import { SUCCESS, ADD_SUCCESS, ADD_QUESTION, GET_ALL_QUESTIONS,
         DELETE_QUESTIONS, DELETE_SUCCESS, UPDATE_SUCCESS,
         UPDATE_QUESTION ,FLIP_DELETION, FILTER_QUESTION,
-        FILTER_SUCCESS, DISPLAY_QUESTION, ADD_NEW_QUESTION } from '../constants';
+        FILTER_SUCCESS, DISPLAY_QUESTION, ADD_NEW_QUESTION, ADD_OPTION, DELETE_OPTION } from '../constants';
 
 export function successResponse(response) {
   return { payload: response, type: SUCCESS };
@@ -43,6 +43,13 @@ export function makeDeletable(question){
   return { type: FLIP_DELETION }
 }
 
+export function addOption () {
+  return { type: ADD_OPTION }
+}
+
+export function deleteOption ( option ) {
+  return { type: DELETE_OPTION, payload: option }
+}
 export function displayQuestion (question) {
   return { type: DISPLAY_QUESTION, payload: question }
 }
