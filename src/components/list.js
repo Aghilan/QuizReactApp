@@ -11,17 +11,18 @@ class List extends Component {
   }
 
   render() {
-    var {title,question,_id,deletable} = this.props
+    var {title, question, _id, deletable, index} = this.props;
     return (
-    <div id="edit" className="col-sm-10 col-sm-offset-1">
-      <br />	
-      <input type='checkbox' className="checklist" value={_id} hidden={!deletable}/>
-      <button onClick={() => this.display()}> {title} </button>
-      <br />
-      {question}
-      <br />
+      <div className="list-group" onClick={() => this.display()}>
+        <input type='checkbox' className="checklist" value={_id} hidden={!deletable} />
+        <a href="#"className=" list-group-item list-group-item-action flex-column align-items-start active">
+          <div className="d-flex w-100 justify-content-between">
+            <h5>{index+1}. {title}</h5>
+          </div>
+          <p>{question}</p>
+        </a>
 
-    </div>
+      </div>
     );
   }
 }

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as question from '../actions/question';
 import Form from './form';
 import List from './list';
-
+import $ from 'jquery';
 
 class Question extends Component {
   constructor(props) {
@@ -12,16 +12,27 @@ class Question extends Component {
     this.onNewTapped = this.onNewTapped.bind(this);
     this.renderTopNavgation= this.renderTopNavgation.bind(this);
     this.selectQuestion= this.selectQuestion.bind(this);
+    this.renderQuestionList = this.renderQuestionList.bind(this);
     this.props.action.getAllQuestions();
+
+
+    $(document).ready(function() {   
+        var sideslider = $('[data-toggle=collapse-side]');
+        var sel = sideslider.attr('data-target');
+        var sel2 = sideslider.attr('data-target-2');
+        sideslider.click(function(event){
+            $(sel).toggleClass('in');
+            $(sel2).toggleClass('out');
+        });
+    });
   }
 
   onNewTapped() {
-    if(document.getElementById('add').innerHTML === 'Add Questions') {
+    if(document.getElementsByClassName('add')[0].innerHTML === 'Add Question') {
       this.props.action.addNewQuestion();
     } else {
-      console.log(this.getQuestionId);
       this.props.action.deleteQuestions(this.getQuestionId());
-      this.selectQuestion()
+      this.selectQuestion();
     }
 
   }
@@ -37,63 +48,105 @@ class Question extends Component {
     return questions;
   }
 
+  flipButtons (elements, text) {
+    [].slice.call(elements).forEach(function ( div ) {
+          div.innerHTML = text;
+    });
+  }
   selectQuestion() {
     this.props.action.makeDeletable();
-    if(document.getElementById('select').innerHTML === 'Select Questions') {
-      document.getElementById('select').innerHTML = "Cancel";
+    if(document.getElementsByClassName('select')[0].innerHTML === 'Select Questions') {
+      this.flipButtons(document.getElementsByClassName('select'), 'Cancel') ;
     } else {
-      document.getElementById('select').innerHTML = "Select Questions"
+      this.flipButtons(document.getElementsByClassName('select'), 'Select Questions'); 
     }
-    if(document.getElementById('add').innerHTML === 'Add Questions') {
-      document.getElementById('add').innerHTML = "Delete";
+    if(document.getElementsByClassName('add')[0].innerHTML === 'Add Question') {
+      this.flipButtons(document.getElementsByClassName('add'), 'Delete');
     } else {
-      document.getElementById('add').innerHTML = "Add Questions"
+      this.flipButtons(document.getElementsByClassName('add'), 'Add Question');
     }
   }
   
 
   renderTopNavgation(){
     return (
-    <nav className="navbar navbar-default">
-      <div className="navbar-header">
-        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-        </button>
-        <a className="navbar-brand" href="javascript:void(0);">Question Manager</a>
+
+      <header role="banner" className="navbar navbar-fixed-top header row navbar-inverse">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" className="navbar-toggle pull-left">
+              <span className="icon-bar gray"></span>
+              <span className="icon-bar gray"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <h4 className="header-title"> Quiz App </h4>
+          </div>
+          <div className="navbar-inverse side-collapse in">
+            <nav role="navigation" className="navbar-collapse">
+              <div className="nav-list">
+               {this.renderQuestionList()}
+              </div>
+              
+            </nav>
+          </div>
+        </div>
+      </header>
+    )
+  }
+
+  renderQuestionList() {
+    return (
+      <div className="list">
+        <h4 className="text-center"> Select Question </h4>
+        <div className="question-list">
+           {
+            this.props.question.map((question,idx) => {
+              return (
+                <div key={idx}>
+                  <List
+                    {...question}
+                    action={this.props.action}
+                    index={idx}
+                  />
+                </div>
+              )
+            })
+          }
+        </div>
+        <div className="form-group save-changes">
+          <button onClick={() => this.onNewTapped()} className="add btn btn-primary" >Add Question</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          
+          {(this.props.question.length > 0)? (<button onClick={() => this.selectQuestion()} className="select btn btn-primary">Select Questions</button>) : null}
+        </div>    
       </div>
-    </nav>
     )
   }
 
   render() {
     return (
       <div>
+
         {this.renderTopNavgation()}
-        <div className="row">
-          <div className="left-pane col-md-4 col-md-offset-1">
-            {
-              this.props.question.map((question,idx) => {
-                return (
-                  <div key={idx}>
-                    <List
-                      {...question}
-                      action={this.props.action}
-                    />
-                  </div>
-                )
-              })
-            }   
-            <button id="add" onClick={() => this.onNewTapped()}>Add Questions</button>
-            <br />
-            <button id="select" onClick={() => this.selectQuestion()}>Select Questions</button> 
-          </div> 
-          <div className="right-pane col-md-6"> 
-              <Form
-                />
+
+        <div className="container-fluid">
+
+          <div className="panel panel-default">
+            <div className="outer">
+              <div className="col-lg-4 col-md-4 col-sm-4 col-xs-1">
+                <div className="body-list">
+                  {this.renderQuestionList()}
+                </div>
+
+                
+              </div>
+
+              <div className="col-lg-8 col-md-8 col-sm-8 col-xs-10 text-center">
+                <Form />
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     );

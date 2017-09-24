@@ -1,317 +1,119 @@
-.App {
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.header {
+  padding-left: 30px;
+}
+
+.save-changes {
   text-align: center;
-}
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  margin-top: 15px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-body {
-  background-color: #ececec;
-}
-
-.edit {
-  background: white;
-}
-.App-intro {
-  font-size: large;
-}
-
-.form-body{
-    background:#fff;
-    padding:20px;
-}
-.login-form{
-    background:rgba(255,255,255,0.8);
-	padding:20px;
-	border-top:3px solid#3e4043;
-}
-.innter-form{
-	padding-top:20px;
-}
-.final-login li{
-	width:50%;
-}
-
-.center {
-  text-align: center;
-  font-family: cursive;
-  font-size: x-large;
-  font-weight: 900;
-  padding-top: 5rem;
-}
-.nav-tabs {
-    border-bottom: none !important;
-}
-
-.submit{
-  text-align: center;
-}
-
-/*
-All the below found CSS are being added
-as part of bootstrap's UI styling.
-TODO: Divide into multiple css files
-*/
-.nav-tabs>li{
-	color:#222 !important;
-}
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-    color: #fff;
-    background-color: #d14d42;
-    border: none !important;
-    border-bottom-color: transparent;
-	border-radius:none !important;
-}
-.nav-tabs>li>a {
-    margin-right: 2px;
-    line-height: 1.428571429;
-    border: none !important;
-    border-radius:none !important;
-	text-transform:uppercase;
-	font-size:16px;
-}
-
-.sa-innate-form input[type=text], input[type=password], input[type=file], textarea, select, email{
-    font-size:13px;
-	padding:10px;
-	border:1px solid#ccc;
-	outline:none;
-	width:100%;
-	margin:8px 0;
-
-}
-.sa-innate-form input[type=submit]{
-    border:1px solid#e64b3b;
-	background:#e64b3b;
-	color:#fff;
-	padding:10px 25px;
-	font-size:14px;
-	margin-top:5px;
-	}
-	.sa-innate-form input[type=submit]:hover{
-	border:1px solid#db3b2b;
-	background:#db3b2b;
-	color:#fff;
-	}
-
-	.sa-innate-form button{
-	border:1px solid#e64b3b;
-	background:#e64b3b;
-	color:#fff;
-	padding:10px 25px;
-	font-size:14px;
-	margin-top:5px;
-	}
-	.sa-innate-form button:hover{
-	border:1px solid#db3b2b;
-	background:#db3b2b;
-	color:#fff;
-	}
-
-  .sa-innate-form p{
-      font-size:13px;
-      padding-top:10px;
-  }
-
-  .search-input {
-  padding: 10px 10px;
-  position: relative;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.navbar-default {
-  background-color: #7abbb7;
-  border-color: #7abbb7;
-}
-
-.navbar-default .navbar-nav>li>a {
-    color: black;
-}
-.navbar-default .navbar-brand {
-    color: black;
-}
-.search-input::before {
-  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAQJJREFUKBWVkr2uQUEUhf3ET6GRaC5aFRoJKrf1BKpb8SwqovYGXkCj00k0QnRKEYkILYobvpUYmeMMyVnJl7P3mjN7Zu9zwiGv2qRFyMMSRrAFp6JPN8XzBj+wgDkUYAg7WINTYdwpDECxrRLJHeq2accdkgm8bzTvNAg2EDOGeUYI1KNO1gkuzTA1g8T7ojbn4ONQWPuHPWgeHmnzCqoe15tkSNPgPEAn68oVcOmA2XMtGK9FoE/VhOTTVNExqLCGZnxCv2pYauEC6lF0oQxX6IOvb7yX9NPEQafan+aPXDdQC18LsO6Tip5BBY6gIQaSbnMCFRCBZRcIvFkbsvCr4AFGOCxQy+JdGQAAAABJRU5ErkJggg==');
-  display: block;
-  position: absolute;
-  width: 15px;
-  z-index: 3;
-  height: 15px;
-  font-size: 20px;
-  top: 11px;
-  left: 16px;
-  line-height: 32px;
-  opacity: 0.6;
-}
-
-.search-input > input {
-  width: 100%;
-  font-size: 18px;
-  border: none;
-  line-height: 22px;
-  padding: 5px 10px 5px 25px;
-  height: 32px;
-  position: relative;
-}
-
-.search-input > input:focus {
-  outline: none;
-}
-
-.content h1 {
-	text-align: center;
-}
-.content .content-footer p {
-	color: #6d6d6d;
-    font-size: 12px;
-    text-align: center;
-}
-.content .content-footer p a {
-	color: inherit;
-	font-weight: bold;
-}
 .panel {
-	border: 1px solid #ddd;
-	background-color: #fcfcfc;
-}
-.panel .btn-group {
-	margin: 15px 0 30px;
-}
-.panel .btn-group .btn {
-	transition: background-color .3s ease;
-}
-.table-filter {
-	background-color: #fff;
-	border-bottom: 1px solid #eee;
-}
-.table-filter tbody tr:hover {
-	cursor: pointer;
-	background-color: #607D8B;
-}
-.table-filter tbody tr td {
-	padding: 10px;
-	vertical-align: middle;
-	border-top-color: #eee;
-}
-.table-filter tbody tr.selected td {
-	background-color: #eee;
-}
-.table-filter tr td:first-child {
-	width: 38px;
-}
-.table-filter tr td:nth-child(2) {
-	width: 35px;
-}
-.ckbox {
-	position: relative;
-}
-.ckbox input[type="checkbox"] {
-	opacity: 0;
-}
-.ckbox label {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-.ckbox label:before {
-	content: '';
-	top: 1px;
-	left: 0;
-	width: 18px;
-	height: 18px;
-	display: block;
-	position: absolute;
-	border-radius: 2px;
-	border: 1px solid #bbb;
-	background-color: #fff;
-}
-.ckbox input[type="checkbox"]:checked + label:before {
-	border-color: #2BBCDE;
-	background-color: #2BBCDE;
-}
-.ckbox input[type="checkbox"]:checked + label:after {
-	top: 3px;
-	left: 3.5px;
-	content: '\e013';
-	color: #fff;
-	font-size: 11px;
-	font-family: 'Glyphicons Halflings';
-	position: absolute;
-}
-.table-filter .star {
-	color: #ccc;
-	text-align: center;
-	display: block;
-}
-.table-filter .star.star-checked {
-	color: #F0AD4E;
-}
-.table-filter .star:hover {
-	color: #ccc;
-}
-.table-filter .star.star-checked:hover {
-	color: #F0AD4E;
-}
-.table-filter .media-photo {
-	width: 35px;
+  border: none;
+  margin-top: 100px; 
 }
 
-.table-filter{
-  margin-bottom: 0
-}
-.table-filter .media-body {
-    display: block;
-    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
-}
-.table-filter .media-meta {
-	font-size: 11px;
-	color: #999;
+.file-image {
+  margin: 20px 0 20px;
+} 
+
+.option {
+  margin: 15px 0 15px;
 }
 
-.table-filter .delete {
-  color: blue;
-  :hover {
-    color: black;
+.question-list {
+  max-height: 500px;
+  overflow-x: overlay;
+}
+
+
+.gravatar {
+  border-radius: 60%;
+  width: 80px;
+  height: 80px;
+  padding: 20px;
+  background: #fff;
+  border: 3px solid #666;
+  color: #666;
+  text-align: center;
+  font: 32px Arial, sans-serif;
+
+}
+
+.delete-image {
+  margin-right: 20px;
+}
+
+.header-title {
+  color: white;
+  margin: 15px 0 0 15px; 
+}
+
+pre {
+  tab-size: 8;
+}
+
+.navbar-inverse {
+  background-color: gray;
+  background-image: none;
+  border-color: #ddd;
+}
+.navbar-inverse .navbar-toggle, .navbar-collapse {
+  border-color: #ddd !important;
+    
+}
+.navbar-nav>li>a:hover {
+  color: #333 !important;
+}
+.navbar-toggle, .navbar-toggle:hover {
+  background-color:#bfbfbf !important;
+  margin-left:20px;
+}
+ 
+@media screen and (max-width: 768px) {
+  .side-collapse-container{
+    width:100%;
+    position:relative;
+    left:0;
+    transition:left .4s;
+  }
+  .side-collapse-container.out{
+    left:200px;
+    display: none;
+  }
+  .side-collapse {
+    top:50px;
+    bottom:0;
+    left:0;
+    width:70%;
+    position:fixed;
+    overflow:hidden;
+    transition:width .4s;
+  }
+
+  .body-list {
+    display: none;
+  }
+
+  .side-collapse.in {
+    width:0;
   }
 }
-.table-filter .media .title {
-	color: #2BBCDE;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: normal;
-	margin: 0;
-}
-.table-filter .media .title span {
-	font-size: .8em;
-	margin-right: 20px;
-}
-.table-filter .media .title span.pagado {
-	color: #5cb85c;
-}
-.table-filter .media .title span.pendiente {
-	color: #f0ad4e;
-}
-.table-filter .media .title span.cancelado {
-	color: #d9534f;
-}
-.table-filter .media .summary {
-	font-size: 14px;
-}
 
-
-.left-pane {
-	max-height: 600px;
-    overflow: auto;
+@media screen and (min-width: 767px) {
+  .nav-list {
+    display: none;
+  }
 }

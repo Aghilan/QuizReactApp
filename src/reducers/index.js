@@ -3,6 +3,7 @@ import question from './question';
 import single from './single';
 import image from './image';
 
+
 const allReducer = combineReducers({
   question,
   single,
