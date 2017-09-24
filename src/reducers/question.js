@@ -37,12 +37,15 @@ export default function (state = [], action) {
       });
       return newState;
     case DELETE_SUCCESS:
-      newState.map((question,idx) =>  {
-          if(action.payload.indexOf(question._id) >= 0){
-            newState.splice(idx, 1);
+      var newState = [];
+      state.map((question) =>  {
+          if(action.payload.indexOf(question._id) < 0){
+            newState.push(question);
           }
           return question;
         });
+
+
       return newState;
     case DELETE_QUESTIONS:
       DeleteApiCall.deleteQuestions(action.payload);
