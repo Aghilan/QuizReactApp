@@ -1,6 +1,6 @@
 import { ADD_QUESTION, ADD_SUCCESS, SUCCESS, GET_ALL_QUESTIONS,
         DELETE_QUESTIONS, UPDATE_QUESTION, UPDATE_SUCCESS,
-        FLIP_DELETION ,DELETE_SUCCESS} from '../constants';
+        FLIP_DELETION ,DELETE_SUCCESS, UPDATE_QUEST, UPDATE_TITLE} from '../constants';
 
 import CreateApiCall from '../utils/add-request';
 import ReadApiCall from '../utils/get-request';
@@ -53,6 +53,22 @@ export default function (state = [], action) {
     case FLIP_DELETION:
       newState.map((question) => {
         question.deletable = !question.deletable;
+        return question;
+      });
+      return newState;
+    case UPDATE_QUEST:
+      newState.map((question) => {
+        if(question._id === action.payloadIndex) {
+          question.question = action.payload;
+        }
+        return question;
+      });
+      return newState;
+    case UPDATE_TITLE:
+      newState.map((question) => {
+        if(question._id === action.payloadIndex) {
+          question.title = action.payload;
+        }
         return question;
       });
       return newState;

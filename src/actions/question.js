@@ -7,8 +7,8 @@ export function successResponse(response) {
   return { payload: response, type: SUCCESS };
 }
 
-export function addNewQuestion() {
-  return { type: ADD_NEW_QUESTION };
+export function addNewQuestion(indexValue) {
+  return { type: ADD_NEW_QUESTION, payload: indexValue };
 }
 
 export function addSuccess(response) {
@@ -54,12 +54,12 @@ export function displayQuestion (question) {
   return { type: DISPLAY_QUESTION, payload: question };
 }
 
-export function updateTitle (title) {
-  return { payload: title, type: UPDATE_TITLE };
+export function updateTitle (title , id) {
+  return { payload: title, payloadIndex: id, type: UPDATE_TITLE };
 }
 
-export function updateQuestionaire (question) {
- return { payload: question, type: UPDATE_QUEST };
+export function updateQuestionaire (question, id) {
+ return { payload: question, payloadIndex: id, type: UPDATE_QUEST };
 }
 
 export function updateOption (question ,index ) {

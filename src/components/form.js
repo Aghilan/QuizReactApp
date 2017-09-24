@@ -103,18 +103,23 @@ class Form extends Component {
     this.props.imageAction.updateImage('');
   }
 
-  updateTitle (value) {
-    this.props.action.updateTitle(value);
+  updateTitle (value, id) {
+    this.props.action.updateTitle(value, id);
   }
 
-  updateQuestionaire (value) {
-    this.props.action.updateQuestionaire(value);
+  updateQuestionaire (value, index) {
+    this.props.action.updateQuestionaire(value , index);
   }
 
   updateOption (value, index) {
     this.props.action.updateOption(value, index);
   }
 
+
+  auto_grow(element) {
+      element.style.height = "55px";
+      element.style.height = (element.scrollHeight)+"px";
+  }
 
   renderOption(options, id) {
     return(
@@ -123,7 +128,7 @@ class Form extends Component {
         options.map((optionValue,i) => {
           return (
             <div className="option input-group" key={i}>
-              <textarea rows="3" type="text" id={id+i+'option'} className="form-control custom-control optionslist" value={optionValue} onChange={e => this.updateOption(e.target.value,i) } aria-label="Text input with trash icon"></textarea>
+              <textarea onKeyUp={(e) => this.auto_grow(e.target)} type="text" id={id+i+'option'} className="form-control custom-control optionslist" value={optionValue} onChange={e => this.updateOption(e.target.value,i) } aria-label="Text input with trash icon"></textarea>
               <span onClick={() => this.deleteOption(i)} className="input-group-addon btn btn-secondary">
                 <span className="glyphicon glyphicon-trash"></span>
               </span>
@@ -150,13 +155,13 @@ class Form extends Component {
             <label className="control-label">
               Topic 
             </label>
-            <input type="text" className="form-control" id={_id+"title"} value={title} onChange={e => this.updateTitle(e.target.value) } required />
+            <input type="text" className="form-control" id={_id+"title"} value={title} onChange={e => this.updateTitle(e.target.value, _id) } required />
           </div>
 
 
           <div className="form-group">
             <label htmlFor={_id+"question"}> Question </label>
-            <textarea rows="3" type="text" id={_id+"question"} className="form-control" value={question} onChange={e => this.updateQuestionaire(e.target.value)} aria-label="Text-area"></textarea>
+            <textarea onKeyUp={(e) => this.auto_grow(e.target)} type="text" id={_id+"question"} className="form-control" value={question} onChange={e => this.updateQuestionaire(e.target.value,_id)} aria-label="Text-area"></textarea>
           </div>  
           
 

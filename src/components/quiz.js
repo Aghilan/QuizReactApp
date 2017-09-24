@@ -29,7 +29,15 @@ class Question extends Component {
 
   onNewTapped() {
     if(document.getElementsByClassName('add')[0].innerHTML === 'Add Question') {
-      this.props.action.addNewQuestion();
+      var appendValue = 1;
+      this.props.question.map((question) => {
+        if (question.question.indexOf('New Question') === 0) {
+           if(question.question.charAt(13)-'0' > 0 && question.question.charAt(13)-'0' <= 9 && question.question.charAt(13)-'0' >= appendValue)
+              appendValue = question.question.charAt(13)-'0' + 1;
+        }
+      });
+      console.log(appendValue);
+      this.props.action.addNewQuestion(appendValue);
     } else {
       this.props.action.deleteQuestions(this.getQuestionId());
       this.selectQuestion();

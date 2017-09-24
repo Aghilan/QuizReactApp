@@ -15,7 +15,7 @@ class List extends Component {
     return (
       <div className="list-group" onClick={() => this.display()}>
         <input type='checkbox' className="checklist" value={_id} hidden={!deletable} />
-        <a href="#"className=" list-group-item list-group-item-action flex-column align-items-start active">
+        <a href="javascript:void(0);" className=" list-group-item list-group-item-action flex-column align-items-start active">
           <div className="d-flex w-100 justify-content-between">
             <h5>{index+1}. {title}</h5>
           </div>

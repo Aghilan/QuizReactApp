@@ -2,9 +2,9 @@ import { DISPLAY_QUESTION, ADD_NEW_QUESTION, ADD_OPTION, DELETE_OPTION,
         UPDATE_TITLE, UPDATE_QUEST,UPDATE_OPTION } from '../constants';
 
 var defaultState = {
-  title: '',
-  question: '',
-  options: [],
+  title: 'New Topic',
+  question: 'New Question',
+  options: ['Option 1', 'Option 2'],
   image: ''
 };
 
@@ -14,7 +14,9 @@ export default function(state = defaultState, action) {
     case DISPLAY_QUESTION:
       return action.payload;
     case ADD_NEW_QUESTION:
-      return defaultState;
+      newState = defaultState;
+      newState.question = 'New Question '+ action.payload;
+      return newState;
     case ADD_OPTION:
       if(newState.options.length >= 6) {
         alert('A question cannot have more than 6 options');
